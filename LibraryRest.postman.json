@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "37e9bc31-f0d4-4b3e-bfb4-ee15e12b2059",
+		"name": "LibraryRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33213717"
+	},
+	"item": [
+		{
+			"name": "getAllAuthors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/authors"
+			},
+			"response": []
+		},
+		{
+			"name": "getAuthor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Title</th>\r",
+							"        <th>First Publish Year</th>\r",
+							"        <th>Number of Pages</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    <tr>\r",
+							"        <td>{{response.docs.[0].title}}</td>\r",
+							"        <td>{{response.docs.[0].first_publish_year}}</td>\r",
+							"        <td>{{response.docs.[0].number_of_pages_median}}</td>\r",
+							"    </tr>\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    var res = pm.response.json();\r",
+							"    return { response: res }\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/authors/1"
+			},
+			"response": []
+		},
+		{
+			"name": "postAuthor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Hernan\",\n    \"lastName\": \"Gusman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8095/api/authors"
+			},
+			"response": []
+		},
+		{
+			"name": "putAuthor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"\",\n    \"lastName\": \"King\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8095/api/authors/1"
+			},
+			"response": []
+		},
+		{
+			"name": "patchAuthor",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"Correa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/authors/1"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAuthor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/author/1"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/books"
+			},
+			"response": []
+		},
+		{
+			"name": "getBook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/books/1"
+			},
+			"response": []
+		},
+		{
+			"name": "postBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Harry Potter y la Piedra Filosofal\",\r\n    \"description\": \"El día de su cumpleaños, Harry Potter descubre que es hijo de dos conocidos hechiceros, de los que ha heredado poderes mágicos. Debe asistir a una famosa escuela de magia y hechicería, donde entabla una amistad con dos jóvenes que se convertirán en sus compañeros de aventura. Durante su primer año en Hogwarts, descubre que un malévolo y poderoso mago llamado Voldemort está en busca de una piedra filosofal que alarga la vida de quien la posee.\",\r\n    \"numberOfPages\": 264,\r\n    \"genres\": [\"FANTASY\", \"CHILDREN_LITERATURE\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/books"
+			},
+			"response": []
+		},
+		{
+			"name": "putBook",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Harry Potter y la Piedra Filosofal\",\r\n    \"description\": \"descr\",\r\n    \"numberOfPages\": 264,\r\n    \"genres\": [\"FANTASY\"],\r\n    \"author\": {\r\n        \"id\": 1,\r\n        \"name\": \"Real Author name 1\",\r\n        \"lastName\": \"Last name 1\"\r\n    },\r\n    \"publishingHouse\":{\r\n        \"id\": 1,\r\n        \"name\": \"Real Publishing House 1\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8095/api/books/108"
+			},
+			"response": []
+		},
+		{
+			"name": "patchBook",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"lol\",\r\n    \"numberOfPages\": 280\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8095/api/books/1"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/books/1"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPublishingHouses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/publishing-houses"
+			},
+			"response": []
+		},
+		{
+			"name": "getPublishingHouse",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/publishing-houses/1"
+			},
+			"response": []
+		},
+		{
+			"name": "postPublishingHouse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Publi House 3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/publishing-houses"
+			},
+			"response": []
+		},
+		{
+			"name": "putPublishingHouse",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Manolo Publi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/publishing-houses/2"
+			},
+			"response": []
+		},
+		{
+			"name": "deletePublishingHouse",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/publishing-houses/1"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://openlibrary.org/search.json"
+		}
+	]
+}
