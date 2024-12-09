@@ -10,7 +10,7 @@ import java.util.List;
 @Controller
 @RequestMapping("api/publishing-houses")
 public class PublishingHouseController {
-    private PublishingHouseService PHService;
+    private final PublishingHouseService PHService;
 
     public PublishingHouseController(PublishingHouseService publishingHouseService) { //here using Dependency Injection
         this.PHService = publishingHouseService;
